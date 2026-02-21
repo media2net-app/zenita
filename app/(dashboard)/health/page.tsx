@@ -37,54 +37,47 @@ export default function HealthOverviewPage() {
 
   return (
     <div className="space-y-6">
-      <header>
-        <h1 className="text-lg font-semibold text-slate-50">Health</h1>
-        <p className="text-sm text-slate-400">
-          Insight into your key measurements and appointments.
-        </p>
-      </header>
-
       <section className="grid gap-4 md:grid-cols-3">
-        <div className="rounded-xl border border-slate-800 bg-slate-900/60 p-4">
-          <h2 className="text-xs font-semibold uppercase tracking-wide text-slate-400">
+        <div className="card p-5">
+          <h2 className="text-xs font-semibold uppercase tracking-wide text-slate-500">
             Latest measurement
           </h2>
-          <dl className="mt-3 space-y-2 text-sm text-slate-300">
+          <dl className="mt-3 space-y-2 text-sm text-gray-700">
             <div className="flex items-center justify-between">
-              <dt className="text-slate-400">Weight</dt>
-              <dd className="font-medium text-slate-50">
+              <dt className="text-gray-500">Weight</dt>
+              <dd className="font-medium text-gray-900">
                 {latestMetrics.weightKg.toFixed(1)} kg
               </dd>
             </div>
             <div className="flex items-center justify-between">
-              <dt className="text-slate-400">Blood pressure</dt>
-              <dd className="font-medium text-slate-50">
+              <dt className="text-gray-500">Blood pressure</dt>
+              <dd className="font-medium text-gray-900">
                 {latestMetrics.systolic}/{latestMetrics.diastolic} mmHg
               </dd>
             </div>
             <div className="flex items-center justify-between">
-              <dt className="text-slate-400">Resting heart rate</dt>
-              <dd className="font-medium text-slate-50">
+              <dt className="text-gray-500">Resting heart rate</dt>
+              <dd className="font-medium text-gray-900">
                 {latestMetrics.heartRate} bpm
               </dd>
             </div>
             <div className="flex items-center justify-between">
-              <dt className="text-slate-400">Sleep (last night)</dt>
-              <dd className="font-medium text-slate-50">
+              <dt className="text-gray-500">Sleep (last night)</dt>
+              <dd className="font-medium text-gray-900">
                 {latestMetrics.sleepHours.toFixed(1)} h
               </dd>
             </div>
             <div className="flex items-center justify-between">
-              <dt className="text-slate-400">Steps (today)</dt>
-              <dd className="font-medium text-slate-50">
+              <dt className="text-gray-500">Steps (today)</dt>
+              <dd className="font-medium text-gray-900">
                 {latestMetrics.steps.toLocaleString()}
               </dd>
             </div>
           </dl>
         </div>
 
-        <div className="rounded-xl border border-slate-800 bg-slate-900/60 p-4">
-          <h2 className="text-xs font-semibold uppercase tracking-wide text-slate-400">
+        <div className="card p-5">
+          <h2 className="text-xs font-semibold uppercase tracking-wide text-slate-500">
             Weekly steps trend
           </h2>
           <div className="mt-3 flex items-end gap-2">
@@ -94,16 +87,16 @@ export default function HealthOverviewPage() {
                 <div key={day.label} className="flex flex-1 flex-col items-center">
                   <div
                     style={{ height }}
-                    className="w-full rounded-t-md bg-emerald-500/80"
+                    className="w-full rounded-t bg-zenita-primary"
                   />
-                  <span className="mt-1 text-[11px] text-slate-400">
+                  <span className="mt-1 text-[11px] text-slate-500">
                     {day.label}
                   </span>
                 </div>
               );
             })}
           </div>
-          <p className="mt-3 text-[11px] text-slate-400">
+          <p className="mt-3 text-xs text-slate-500">
             Goal: 8,000 steps/day · Best day: Sat (
             {weeklyTrend
               .find((d) => d.value === maxSteps)
@@ -112,23 +105,23 @@ export default function HealthOverviewPage() {
           </p>
         </div>
 
-        <div className="rounded-xl border border-slate-800 bg-slate-900/60 p-4">
-          <h2 className="text-xs font-semibold uppercase tracking-wide text-slate-400">
+        <div className="card p-5">
+          <h2 className="text-xs font-semibold uppercase tracking-wide text-slate-500">
             Upcoming appointments
           </h2>
-          <ul className="mt-3 space-y-2 text-sm text-slate-300">
+          <ul className="mt-3 space-y-1.5 text-sm text-gray-700">
             {healthAppointments.map((appt) => (
               <li
                 key={appt.id}
-                className="rounded-lg border border-slate-800 bg-slate-900/80 px-3 py-2"
+                className="rounded-crm bg-slate-50 px-3 py-2.5"
               >
                 <div className="flex items-center justify-between gap-2">
-                  <span className="font-medium text-slate-50">
+                  <span className="font-medium text-gray-900">
                     {appt.title}
                   </span>
-                  <span className="text-xs text-slate-400">{appt.date}</span>
+                  <span className="text-xs text-gray-500">{appt.date}</span>
                 </div>
-                <p className="mt-1 text-xs text-slate-400">{appt.location}</p>
+                <p className="mt-1 text-xs text-gray-500">{appt.location}</p>
               </li>
             ))}
           </ul>

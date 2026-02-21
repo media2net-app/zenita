@@ -6,9 +6,23 @@ html,
 body {
   padding: 0;
   margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 * {
   box-sizing: border-box;
+}
+
+@layer components {
+  .card {
+    @apply rounded-crm-lg bg-white shadow-card-crm border border-crm-card-border/60;
+  }
+  .card-secondary {
+    @apply rounded-crm bg-slate-50 border border-slate-100;
+  }
+  .stat-card {
+    @apply rounded-crm-lg bg-white shadow-card-crm border border-crm-card-border/60 overflow-hidden;
+  }
 }
 
