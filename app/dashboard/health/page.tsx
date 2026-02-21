@@ -1,4 +1,5 @@
 import { AppleWatchBadge } from "@/components/AppleWatchBadge";
+import { Watch } from "lucide-react";
 
 const latestMetrics = {
   weightKg: 74.2,
@@ -48,8 +49,8 @@ export default function HealthOverviewPage() {
       <div className="card p-4">
         <div className="flex min-w-0 flex-wrap items-center justify-between gap-3 gap-y-2 sm:gap-4">
           <div className="flex min-w-0 items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gray-900 text-white text-lg" aria-hidden>
-              ⌚
+            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gray-900 text-white" aria-hidden>
+              <Watch className="h-5 w-5" />
             </div>
             <div>
               <p className="font-medium text-gray-900">{connectedWearable.name} connected</p>

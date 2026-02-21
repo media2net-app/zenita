@@ -1,6 +1,7 @@
 import "./globals.css";
 import type { ReactNode } from "react";
 import { Inter } from "next/font/google";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 export const metadata = {
   title: "Zenita",
@@ -20,9 +21,9 @@ const inter = Inter({
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className={inter.variable}>
-      <body className="min-h-screen min-w-0 overflow-x-hidden bg-crm-content font-sans text-gray-900 antialiased">
-        {children}
+    <html lang="en" className={inter.variable} suppressHydrationWarning>
+      <body className="min-h-screen min-w-0 overflow-x-hidden bg-background font-sans text-foreground antialiased">
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   );

@@ -4,6 +4,8 @@
  * Identity Statement, Weekly Alignment Score, Life Balance Overview.
  */
 
+import { GlowingCard } from "@/components/ui/glowing-card";
+
 const dummyVision = {
   statement:
     "Live with intention: health as foundation, growth as practice, and connection as purpose. Build a life that feels aligned and sustainable.",
@@ -43,88 +45,88 @@ const dummyLifeBalance = [
 export default function CorePage() {
   return (
     <div className="space-y-6">
-      <p className="text-sm text-slate-500">
+      <p className="text-sm text-muted-foreground">
         Central identity & direction. Your vision, values, objectives and alignment.
       </p>
 
       {/* Vision & Life Direction */}
-      <section className="card p-4 md:p-5">
-        <h2 className="text-base font-semibold text-gray-900">Vision & Life Direction</h2>
-        <p className="mt-3 text-sm text-gray-700 leading-relaxed">{dummyVision.statement}</p>
-        <p className="mt-2 text-xs text-slate-500">Last updated {dummyVision.lastUpdated}</p>
-      </section>
+      <GlowingCard>
+        <h2 className="text-base font-semibold text-foreground">Vision & Life Direction</h2>
+        <p className="mt-3 text-sm text-foreground leading-relaxed">{dummyVision.statement}</p>
+        <p className="mt-2 text-xs text-muted-foreground">Last updated {dummyVision.lastUpdated}</p>
+      </GlowingCard>
 
       {/* Core Values */}
-      <section className="card p-4 md:p-5">
-        <h2 className="text-base font-semibold text-gray-900">Core Values</h2>
+      <GlowingCard>
+        <h2 className="text-base font-semibold text-foreground">Core Values</h2>
         <ul className="mt-4 grid gap-3 sm:grid-cols-2">
           {dummyCoreValues.map((v) => (
             <li
               key={v.id}
-              className="rounded-crm border border-slate-200 bg-slate-50/50 p-4"
+              className="rounded-crm border border-border bg-muted/50 p-4"
             >
-              <span className="font-medium text-gray-900">{v.name}</span>
-              <p className="mt-1 text-sm text-slate-600">{v.description}</p>
+              <span className="font-medium text-foreground">{v.name}</span>
+              <p className="mt-1 text-sm text-muted-foreground">{v.description}</p>
             </li>
           ))}
         </ul>
-      </section>
+      </GlowingCard>
 
       {/* Long-Term Objectives */}
-      <section className="card p-4 md:p-5">
-        <h2 className="text-base font-semibold text-gray-900">Long-Term Objectives</h2>
+      <GlowingCard>
+        <h2 className="text-base font-semibold text-foreground">Long-Term Objectives</h2>
         <ul className="mt-4 space-y-4">
           {dummyObjectives.map((o) => (
-            <li key={o.id} className="rounded-crm bg-slate-50 p-4">
+            <li key={o.id} className="rounded-crm bg-muted p-4">
               <div className="flex items-center justify-between gap-2">
-                <span className="font-medium text-gray-900">{o.title}</span>
-                <span className="text-xs text-slate-500">{o.due}</span>
+                <span className="font-medium text-foreground">{o.title}</span>
+                <span className="text-xs text-muted-foreground">{o.due}</span>
               </div>
               <div className="mt-2 flex items-center gap-3">
-                <div className="h-2 flex-1 overflow-hidden rounded-full bg-slate-200">
+                <div className="h-2 flex-1 overflow-hidden rounded-full bg-muted">
                   <div
                     className="h-full rounded-full bg-zenita-primary"
                     style={{ width: `${o.progress}%` }}
                   />
                 </div>
-                <span className="text-sm font-medium text-gray-700">{o.progress}%</span>
+                <span className="text-sm font-medium text-foreground">{o.progress}%</span>
               </div>
             </li>
           ))}
         </ul>
-      </section>
+      </GlowingCard>
 
       {/* Identity Statement */}
-      <section className="card p-4 md:p-5">
-        <h2 className="text-base font-semibold text-gray-900">Identity Statement</h2>
-        <p className="mt-3 text-sm text-gray-700 leading-relaxed italic">
+      <GlowingCard>
+        <h2 className="text-base font-semibold text-foreground">Identity Statement</h2>
+        <p className="mt-3 text-sm text-foreground leading-relaxed italic">
           &ldquo;{dummyIdentityStatement}&rdquo;
         </p>
-      </section>
+      </GlowingCard>
 
       <div className="grid gap-6 lg:grid-cols-2">
         {/* Weekly Alignment Score */}
-        <section className="card p-4 md:p-5">
-          <h2 className="text-base font-semibold text-gray-900">Weekly Alignment Score</h2>
+        <GlowingCard>
+          <h2 className="text-base font-semibold text-foreground">Weekly Alignment Score</h2>
           <div className="mt-4 flex items-center gap-4">
             <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-full bg-zenita-primary/10 text-2xl font-bold text-zenita-primary">
               {dummyAlignment.score}
             </div>
             <div>
-              <p className="font-medium text-gray-900">{dummyAlignment.label}</p>
-              <p className="mt-1 text-sm text-slate-600">{dummyAlignment.summary}</p>
+              <p className="font-medium text-foreground">{dummyAlignment.label}</p>
+              <p className="mt-1 text-sm text-muted-foreground">{dummyAlignment.summary}</p>
             </div>
           </div>
-        </section>
+        </GlowingCard>
 
         {/* Life Balance Overview */}
-        <section className="card p-4 md:p-5">
-          <h2 className="text-base font-semibold text-gray-900">Life Balance Overview</h2>
+        <GlowingCard>
+          <h2 className="text-base font-semibold text-foreground">Life Balance Overview</h2>
           <ul className="mt-4 space-y-3">
             {dummyLifeBalance.map((b) => (
               <li key={b.area} className="flex items-center gap-3">
-                <span className="w-28 shrink-0 text-sm text-gray-700">{b.area}</span>
-                <div className="h-2 flex-1 overflow-hidden rounded-full bg-slate-200">
+                <span className="w-28 shrink-0 text-sm text-foreground">{b.area}</span>
+                <div className="h-2 flex-1 overflow-hidden rounded-full bg-muted">
                   <div
                     className={`h-full rounded-full ${
                       b.status === "good"
@@ -136,13 +138,13 @@ export default function CorePage() {
                     style={{ width: `${b.level}%` }}
                   />
                 </div>
-                <span className="w-10 text-right text-sm font-medium text-gray-700">
+                <span className="w-10 text-right text-sm font-medium text-foreground">
                   {b.level}%
                 </span>
               </li>
             ))}
           </ul>
-        </section>
+        </GlowingCard>
       </div>
     </div>
   );

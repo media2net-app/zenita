@@ -2,6 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  :root {
+    --background: #f8fafc;
+    --foreground: #0f172a;
+    --border: #e2e8f0;
+    --muted: #f1f5f9;
+    --muted-foreground: #64748b;
+    --black: #000000;
+  }
+  .dark {
+    --background: #0f172a;
+    --foreground: #f1f5f9;
+    --border: #334155;
+    --muted: #1e293b;
+    --muted-foreground: #94a3b8;
+    --black: #000000;
+  }
+}
+
 html,
 body {
   padding: 0;
@@ -16,13 +35,12 @@ body {
 
 @layer components {
   .card {
-    @apply rounded-crm-lg bg-white shadow-card-crm border border-crm-card-border/60;
+    @apply rounded-crm-lg border border-border bg-white shadow-card-crm dark:border-border dark:bg-background dark:shadow-[0px_0px_27px_0px_rgba(45,45,45,0.3)];
   }
   .card-secondary {
-    @apply rounded-crm bg-slate-50 border border-slate-100;
+    @apply rounded-crm border border-slate-200 bg-slate-50 dark:border-border dark:bg-muted;
   }
   .stat-card {
-    @apply rounded-crm-lg bg-white shadow-card-crm border border-crm-card-border/60 overflow-hidden;
+    @apply rounded-crm-lg overflow-hidden border border-border bg-white shadow-card-crm dark:border-border dark:bg-background dark:shadow-[0px_0px_27px_0px_rgba(45,45,45,0.3)];
   }
 }
-

@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { AppleWatchBadge } from "@/components/AppleWatchBadge";
+import { GlowingCard } from "@/components/ui/glowing-card";
+import { Watch } from "lucide-react";
 import { dummyDocuments } from "@/lib/dummy-documents";
 
 const dummyHealth = {
@@ -70,21 +72,21 @@ export default function DashboardHomePage() {
       <div className="min-w-0 flex-1 space-y-6">
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {stats.map((stat, i) => (
-          <div key={i} className="stat-card p-4 md:p-5">
-            <div className="flex items-center justify-between gap-2">
-              <span className="text-xs font-medium uppercase tracking-wide text-slate-500">
+          <GlowingCard key={i} noGlow>
+          <div className="flex items-center justify-between gap-2">
+              <span className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
                 {stat.label}
               </span>
               {stat.source === "apple_watch" && <AppleWatchBadge />}
             </div>
-            <div className="mt-1 text-2xl font-bold text-gray-900">{stat.value}</div>
+            <div className="mt-1 text-2xl font-bold text-foreground">{stat.value}</div>
             <div
               className={`mt-1 text-xs ${
                 stat.accent === "teal"
                   ? "text-zenita-primary"
                   : stat.accent === "amber"
-                    ? "text-amber-600"
-                    : "text-indigo-600"
+                    ? "text-amber-400"
+                    : "text-indigo-400"
               }`}
             >
               {stat.sub}
@@ -98,23 +100,23 @@ export default function DashboardHomePage() {
                     : "bg-indigo-500"
               }`}
             />
-          </div>
+          </GlowingCard>
         ))}
       </div>
 
       <div className="grid gap-6 lg:grid-cols-3">
-        <section className="card lg:col-span-2 p-4 md:p-5">
-          <h2 className="text-base font-semibold text-gray-900">
+        <GlowingCard className="lg:col-span-2">
+          <h2 className="text-base font-semibold text-foreground">
             Today&apos;s overview
           </h2>
-          <p className="mt-1 text-sm text-slate-500">
+          <p className="mt-1 text-sm text-muted-foreground">
             Key health metrics, upcoming appointments and recent documents.
           </p>
 
           <div className="mt-4 md:mt-5 grid gap-3 grid-cols-1 sm:grid-cols-3">
             <div className="card-secondary p-4">
-              <div className="text-xs font-medium text-slate-500">Weight</div>
-              <div className="mt-1 text-lg font-semibold text-gray-900">
+              <div className="text-xs font-medium text-muted-foreground">Weight</div>
+              <div className="mt-1 text-lg font-semibold text-foreground">
                 {dummyHealth.weightKg.toFixed(1)} kg
               </div>
               <div className="mt-1 text-xs text-zenita-primary">
@@ -123,12 +125,12 @@ export default function DashboardHomePage() {
             </div>
             <div className="card-secondary p-4">
               <div className="flex items-center justify-between gap-2">
-                <span className="text-xs font-medium text-slate-500">
+                <span className="text-xs font-medium text-muted-foreground">
                   Resting heart rate
                 </span>
                 <AppleWatchBadge />
               </div>
-              <div className="mt-1 text-lg font-semibold text-gray-900">
+              <div className="mt-1 text-lg font-semibold text-foreground">
                 {dummyHealth.restingHeartRate} bpm
               </div>
               <div className="mt-1 text-xs text-zenita-primary">
@@ -136,11 +138,11 @@ export default function DashboardHomePage() {
               </div>
             </div>
             <div className="card-secondary p-4">
-              <div className="text-xs font-medium text-slate-500">Sleep</div>
-              <div className="mt-1 text-lg font-semibold text-gray-900">
+              <div className="text-xs font-medium text-muted-foreground">Sleep</div>
+              <div className="mt-1 text-lg font-semibold text-foreground">
                 {dummyHealth.sleepHours.toFixed(1)} h
               </div>
-              <div className="mt-1 text-xs text-amber-600">
+              <div className="mt-1 text-xs text-amber-400">
                 Slightly below 8h goal
               </div>
             </div>
@@ -148,34 +150,34 @@ export default function DashboardHomePage() {
 
           <div className="mt-6 grid gap-6 sm:grid-cols-2">
             <div>
-              <h3 className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+              <h3 className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
                 Upcoming appointments
               </h3>
-              <ul className="mt-2 space-y-1.5 text-sm text-gray-700">
+              <ul className="mt-2 space-y-1.5 text-sm text-foreground">
                 {dummyAppointments.map((appt) => (
                   <li
                     key={appt.id}
-                    className="flex items-center justify-between rounded-crm bg-slate-50 px-3 py-2.5"
+                    className="flex items-center justify-between rounded-crm bg-muted px-3 py-2.5"
                   >
                     <span>{appt.title}</span>
-                    <span className="text-xs text-slate-500">{appt.date}</span>
+                    <span className="text-xs text-muted-foreground">{appt.date}</span>
                   </li>
                 ))}
               </ul>
             </div>
             <div>
-              <h3 className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+              <h3 className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
                 Recent documents
               </h3>
-              <ul className="mt-2 space-y-1.5 text-sm text-gray-700">
+              <ul className="mt-2 space-y-1.5 text-sm text-foreground">
                 {dummyDocuments.slice(0, 3).map((doc) => (
                   <li key={doc.id}>
                     <Link
                       href={`/dashboard/documents/${doc.id}`}
-                      className="flex items-center justify-between rounded-crm bg-slate-50 px-3 py-2.5 transition-colors hover:bg-slate-100 active:bg-slate-100"
+                      className="flex items-center justify-between rounded-crm bg-muted px-3 py-2.5 transition-colors hover:bg-border active:bg-border"
                     >
                       <span className="truncate pr-3">{doc.name}</span>
-                      <span className="rounded-full bg-zenita-primary/10 px-2 py-0.5 text-xs font-medium text-zenita-primary shrink-0">
+                      <span className="rounded-full bg-zenita-primary/20 px-2 py-0.5 text-xs font-medium text-zenita-primary shrink-0">
                         {doc.category}
                       </span>
                     </Link>
@@ -184,38 +186,38 @@ export default function DashboardHomePage() {
               </ul>
             </div>
           </div>
-        </section>
+        </GlowingCard>
 
         <section className="space-y-4 md:space-y-5">
-          <div className="card p-4 md:p-5">
-            <h2 className="text-base font-semibold text-gray-900">
+          <GlowingCard>
+            <h2 className="text-base font-semibold text-foreground">
               Connected devices
             </h2>
-            <div className="mt-3 flex items-center gap-3 rounded-crm bg-slate-50 px-3 py-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gray-900 text-white text-lg" aria-hidden>
-                ⌚
+            <div className="mt-3 flex items-center gap-3 rounded-crm bg-muted px-3 py-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-foreground text-background" aria-hidden>
+                <Watch className="h-5 w-5" />
               </div>
               <div className="min-w-0 flex-1">
-                <p className="font-medium text-gray-900">{connectedWearable.name}</p>
-                <p className="text-xs text-slate-500">{connectedWearable.model} · {connectedWearable.lastSync}</p>
+                <p className="font-medium text-foreground">{connectedWearable.name}</p>
+                <p className="text-xs text-muted-foreground">{connectedWearable.model} · {connectedWearable.lastSync}</p>
               </div>
-              <span className="rounded-full bg-zenita-primary/10 px-2 py-0.5 text-xs font-medium text-zenita-primary">
+              <span className="rounded-full bg-zenita-primary/20 px-2 py-0.5 text-xs font-medium text-zenita-primary">
                 Connected
               </span>
             </div>
-            <p className="mt-2 text-xs text-slate-500">
+            <p className="mt-2 text-xs text-muted-foreground">
               Heart rate and activity sync from Apple Watch.
             </p>
-          </div>
-          <div className="card p-4 md:p-5">
-            <h2 className="text-base font-semibold text-gray-900">
+          </GlowingCard>
+          <GlowingCard>
+            <h2 className="text-base font-semibold text-foreground">
               Quick actions
             </h2>
-<ul className="mt-3 space-y-1 text-sm text-gray-700">
+            <ul className="mt-3 space-y-1 text-sm text-foreground">
             <li>
               <Link
                 href="/dashboard/health/add"
-                className="block rounded-crm px-3 py-2.5 hover:bg-slate-50 active:bg-slate-100"
+                className="block rounded-crm px-3 py-2.5 hover:bg-muted active:bg-muted"
               >
                 Add health measurement
               </Link>
@@ -223,13 +225,13 @@ export default function DashboardHomePage() {
             <li>
               <Link
                 href="/dashboard/documents/upload"
-                className="block rounded-crm px-3 py-2.5 hover:bg-slate-50 active:bg-slate-100"
+                className="block rounded-crm px-3 py-2.5 hover:bg-muted active:bg-muted"
               >
                 Upload document
               </Link>
             </li>
           </ul>
-          </div>
+          </GlowingCard>
         </section>
       </div>
       </div>
@@ -240,44 +242,44 @@ export default function DashboardHomePage() {
         aria-label="Global widgets"
       >
         <div className="card p-4">
-          <p className="text-xs font-medium uppercase tracking-wide text-slate-500">Daily Score</p>
+          <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Daily Score</p>
           <p className="mt-1 text-2xl font-bold text-zenita-primary">{globalWidgets.dailyScore}</p>
         </div>
         <div className="card p-4">
-          <p className="text-xs font-medium uppercase tracking-wide text-slate-500">Weekly Financial Health</p>
-          <p className="mt-1 font-semibold text-gray-900">{globalWidgets.weeklyFinancialHealth}</p>
+          <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Weekly Financial Health</p>
+          <p className="mt-1 font-semibold text-foreground">{globalWidgets.weeklyFinancialHealth}</p>
         </div>
         <div className="card p-4">
-          <p className="text-xs font-medium uppercase tracking-wide text-slate-500">Sleep Quality</p>
-          <p className="mt-1 font-semibold text-gray-900">{globalWidgets.sleepQuality}</p>
+          <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Sleep Quality</p>
+          <p className="mt-1 font-semibold text-foreground">{globalWidgets.sleepQuality}</p>
         </div>
         <div className="card p-4">
-          <p className="text-xs font-medium uppercase tracking-wide text-slate-500">Alcohol Intake</p>
-          <p className="mt-1 font-semibold text-gray-900">{globalWidgets.alcoholIntake}</p>
+          <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Alcohol Intake</p>
+          <p className="mt-1 font-semibold text-foreground">{globalWidgets.alcoholIntake}</p>
         </div>
         <div className="card p-4">
-          <p className="text-xs font-medium uppercase tracking-wide text-slate-500">Hydration Level</p>
+          <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Hydration Level</p>
           <div className="mt-2 flex items-center gap-2">
-            <div className="h-2 flex-1 overflow-hidden rounded-full bg-slate-200">
+            <div className="h-2 flex-1 overflow-hidden rounded-full bg-muted">
               <div
                 className="h-full rounded-full bg-sky-500"
                 style={{ width: `${globalWidgets.hydrationLevel}%` }}
               />
             </div>
-            <span className="text-sm font-medium text-gray-700">{globalWidgets.hydrationLevel}%</span>
+            <span className="text-sm font-medium text-foreground">{globalWidgets.hydrationLevel}%</span>
           </div>
         </div>
         <div className="card p-4">
-          <p className="text-xs font-medium uppercase tracking-wide text-slate-500">Focus Score</p>
-          <p className="mt-1 font-semibold text-gray-900">{globalWidgets.focusScore}/10</p>
+          <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Focus Score</p>
+          <p className="mt-1 font-semibold text-foreground">{globalWidgets.focusScore}/10</p>
         </div>
         <div className="card p-4">
-          <p className="text-xs font-medium uppercase tracking-wide text-slate-500">Legal Alerts</p>
-          <p className="mt-1 font-semibold text-gray-900">{globalWidgets.legalAlerts} upcoming</p>
+          <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Legal Alerts</p>
+          <p className="mt-1 font-semibold text-foreground">{globalWidgets.legalAlerts} upcoming</p>
         </div>
         <div className="card p-4">
-          <p className="text-xs font-medium uppercase tracking-wide text-slate-500">Device Status</p>
-          <p className="mt-1 font-semibold text-gray-900">{globalWidgets.deviceStatus}</p>
+          <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Device Status</p>
+          <p className="mt-1 font-semibold text-foreground">{globalWidgets.deviceStatus}</p>
         </div>
       </aside>
     </div>
