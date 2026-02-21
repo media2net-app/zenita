@@ -32,19 +32,19 @@ export default function AddHealthMeasurementPage() {
 
   return (
     <div className="mx-auto max-w-md space-y-6">
-      <div className="flex items-center gap-2 text-sm text-slate-600">
+      <div className="flex items-center gap-2 text-sm text-muted-foreground">
         <Link href="/dashboard/health" className="hover:text-zenita-primary">
           Health
         </Link>
         <span aria-hidden>/</span>
-        <span className="font-medium text-gray-900">Add measurement</span>
+        <span className="font-medium text-foreground">Add measurement</span>
       </div>
 
       <div className="card p-4 md:p-5">
-        <h1 className="text-lg font-semibold text-gray-900">
+        <h1 className="text-lg font-semibold text-foreground">
           Add health measurement
         </h1>
-        <p className="mt-1 text-sm text-slate-500">
+        <p className="mt-1 text-sm text-muted-foreground">
           Log a manual measurement. Data from Apple Watch syncs automatically.
         </p>
 
@@ -52,7 +52,7 @@ export default function AddHealthMeasurementPage() {
           <div>
             <label
               htmlFor="type"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium text-foreground"
             >
               Type
             </label>
@@ -60,7 +60,7 @@ export default function AddHealthMeasurementPage() {
               id="type"
               value={type}
               onChange={(e) => setType(e.target.value)}
-              className="mt-1.5 w-full rounded-crm-lg border border-slate-200 bg-white px-4 py-2.5 text-gray-900 focus:border-zenita-primary focus:outline-none focus:ring-2 focus:ring-zenita-primary/20"
+              className="mt-1.5 w-full rounded-crm-lg border border-border bg-muted px-4 py-2.5 text-foreground focus:border-zenita-primary focus:outline-none focus:ring-2 focus:ring-zenita-primary/20"
             >
               {metricTypes.map((m) => (
                 <option key={m.value} value={m.value}>
@@ -73,7 +73,7 @@ export default function AddHealthMeasurementPage() {
           <div>
             <label
               htmlFor="value"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium text-foreground"
             >
               Value {currentMetric?.unit && `(${currentMetric.unit})`}
             </label>
@@ -85,14 +85,14 @@ export default function AddHealthMeasurementPage() {
               onChange={(e) => setValue(e.target.value)}
               required
               placeholder={type === "steps" ? "e.g. 8500" : type === "sleep" ? "e.g. 7.5" : "e.g. 72.5"}
-              className="mt-1.5 w-full rounded-crm-lg border border-slate-200 bg-white px-4 py-2.5 text-gray-900 placeholder:text-slate-400 focus:border-zenita-primary focus:outline-none focus:ring-2 focus:ring-zenita-primary/20"
+              className="mt-1.5 w-full rounded-crm-lg border border-border bg-muted px-4 py-2.5 text-foreground placeholder:text-muted-foreground focus:border-zenita-primary focus:outline-none focus:ring-2 focus:ring-zenita-primary/20"
             />
           </div>
 
           <div>
             <label
               htmlFor="note"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium text-foreground"
             >
               Note (optional)
             </label>
@@ -102,7 +102,7 @@ export default function AddHealthMeasurementPage() {
               value={note}
               onChange={(e) => setNote(e.target.value)}
               placeholder="e.g. After morning run"
-              className="mt-1.5 w-full rounded-crm-lg border border-slate-200 bg-white px-4 py-2.5 text-gray-900 placeholder:text-slate-400 focus:border-zenita-primary focus:outline-none focus:ring-2 focus:ring-zenita-primary/20"
+              className="mt-1.5 w-full rounded-crm-lg border border-border bg-muted px-4 py-2.5 text-foreground placeholder:text-muted-foreground focus:border-zenita-primary focus:outline-none focus:ring-2 focus:ring-zenita-primary/20"
             />
           </div>
 
@@ -116,7 +116,7 @@ export default function AddHealthMeasurementPage() {
             </button>
             <Link
               href="/dashboard/health"
-              className="rounded-crm-lg border border-slate-200 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-200"
+              className="rounded-crm-lg border border-border bg-muted px-4 py-2.5 text-sm font-medium text-foreground hover:bg-muted focus:outline-none focus:ring-2 focus:ring-border"
             >
               Cancel
             </Link>

@@ -35,12 +35,12 @@ body {
 
 @layer components {
   .card {
-    @apply rounded-crm-lg border border-border bg-white shadow-card-crm dark:border-border dark:bg-background dark:shadow-[0px_0px_27px_0px_rgba(45,45,45,0.3)];
+    @apply rounded-crm-lg border border-border bg-background shadow-[0_1px_3px_0_rgb(0_0_0_/0.05)] dark:shadow-[0px_0px_27px_0px_rgba(45,45,45,0.3)];
   }
   .card-secondary {
-    @apply rounded-crm border border-slate-200 bg-slate-50 dark:border-border dark:bg-muted;
+    @apply rounded-crm border border-border bg-muted;
   }
   .stat-card {
-    @apply rounded-crm-lg overflow-hidden border border-border bg-white shadow-card-crm dark:border-border dark:bg-background dark:shadow-[0px_0px_27px_0px_rgba(45,45,45,0.3)];
+    @apply rounded-crm-lg overflow-hidden border border-border bg-background shadow-[0_1px_3px_0_rgb(0_0_0_/0.05)] dark:shadow-[0px_0px_27px_0px_rgba(45,45,45,0.3)];
   }
 }

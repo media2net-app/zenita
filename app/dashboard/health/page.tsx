@@ -49,12 +49,12 @@ export default function HealthOverviewPage() {
       <div className="card p-4">
         <div className="flex min-w-0 flex-wrap items-center justify-between gap-3 gap-y-2 sm:gap-4">
           <div className="flex min-w-0 items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gray-900 text-white" aria-hidden>
+            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-foreground text-background" aria-hidden>
               <Watch className="h-5 w-5" />
             </div>
             <div>
-              <p className="font-medium text-gray-900">{connectedWearable.name} connected</p>
-              <p className="text-xs text-slate-500">{connectedWearable.model} · Synced {connectedWearable.lastSync.toLowerCase()}</p>
+              <p className="font-medium text-foreground">{connectedWearable.name} connected</p>
+              <p className="text-xs text-muted-foreground">{connectedWearable.model} · Synced {connectedWearable.lastSync.toLowerCase()}</p>
             </div>
           </div>
           <AppleWatchBadge />
@@ -63,43 +63,43 @@ export default function HealthOverviewPage() {
 
       <section className="grid gap-4 md:grid-cols-3">
         <div className="card min-w-0 p-4 md:p-5">
-          <h2 className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+          <h2 className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
             Latest measurement
           </h2>
-          <dl className="mt-3 space-y-2 text-sm text-gray-700">
+          <dl className="mt-3 space-y-2 text-sm text-foreground">
             <div className="flex items-center justify-between">
-              <dt className="text-gray-500">Weight</dt>
-              <dd className="font-medium text-gray-900">
+              <dt className="text-muted-foreground">Weight</dt>
+              <dd className="font-medium text-foreground">
                 {latestMetrics.weightKg.toFixed(1)} kg
               </dd>
             </div>
             <div className="flex items-center justify-between">
-              <dt className="text-gray-500">Blood pressure</dt>
-              <dd className="font-medium text-gray-900">
+              <dt className="text-muted-foreground">Blood pressure</dt>
+              <dd className="font-medium text-foreground">
                 {latestMetrics.systolic}/{latestMetrics.diastolic} mmHg
               </dd>
             </div>
             <div className="flex items-center justify-between gap-2">
-              <dt className="flex items-center gap-1.5 text-gray-500">
+              <dt className="flex items-center gap-1.5 text-muted-foreground">
                 Resting heart rate
                 <AppleWatchBadge />
               </dt>
-              <dd className="font-medium text-gray-900">
+              <dd className="font-medium text-foreground">
                 {latestMetrics.heartRate} bpm
               </dd>
             </div>
             <div className="flex items-center justify-between">
-              <dt className="text-gray-500">Sleep (last night)</dt>
-              <dd className="font-medium text-gray-900">
+              <dt className="text-muted-foreground">Sleep (last night)</dt>
+              <dd className="font-medium text-foreground">
                 {latestMetrics.sleepHours.toFixed(1)} h
               </dd>
             </div>
             <div className="flex items-center justify-between gap-2">
-              <dt className="flex items-center gap-1.5 text-gray-500">
+              <dt className="flex items-center gap-1.5 text-muted-foreground">
                 Steps (today)
                 <AppleWatchBadge />
               </dt>
-              <dd className="font-medium text-gray-900">
+              <dd className="font-medium text-foreground">
                 {latestMetrics.steps.toLocaleString()}
               </dd>
             </div>
@@ -107,7 +107,7 @@ export default function HealthOverviewPage() {
         </div>
 
         <div className="card min-w-0 p-4 md:p-5">
-          <h2 className="flex flex-wrap items-center gap-2 text-xs font-semibold uppercase tracking-wide text-slate-500">
+          <h2 className="flex flex-wrap items-center gap-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
             Weekly steps trend
             <AppleWatchBadge />
           </h2>
@@ -120,14 +120,14 @@ export default function HealthOverviewPage() {
                     style={{ height }}
                     className="w-full rounded-t bg-zenita-primary"
                   />
-                  <span className="mt-1 text-[11px] text-slate-500">
+                  <span className="mt-1 text-[11px] text-muted-foreground">
                     {day.label}
                   </span>
                 </div>
               );
             })}
           </div>
-          <p className="mt-3 text-xs text-slate-500">
+          <p className="mt-3 text-xs text-muted-foreground">
             Goal: 8,000 steps/day · Best day: Sat (
             {weeklyTrend
               .find((d) => d.value === maxSteps)
@@ -137,22 +137,22 @@ export default function HealthOverviewPage() {
         </div>
 
         <div className="card min-w-0 p-4 md:p-5">
-          <h2 className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+          <h2 className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
             Upcoming appointments
           </h2>
-          <ul className="mt-3 space-y-1.5 text-sm text-gray-700">
+          <ul className="mt-3 space-y-1.5 text-sm text-foreground">
             {healthAppointments.map((appt) => (
               <li
                 key={appt.id}
-                className="rounded-crm bg-slate-50 px-3 py-2.5"
+                className="rounded-crm bg-muted px-3 py-2.5"
               >
                 <div className="flex items-center justify-between gap-2">
-                  <span className="font-medium text-gray-900">
+                  <span className="font-medium text-foreground">
                     {appt.title}
                   </span>
-                  <span className="text-xs text-gray-500">{appt.date}</span>
+                  <span className="text-xs text-muted-foreground">{appt.date}</span>
                 </div>
-                <p className="mt-1 text-xs text-gray-500">{appt.location}</p>
+                <p className="mt-1 text-xs text-muted-foreground">{appt.location}</p>
               </li>
             ))}
           </ul>

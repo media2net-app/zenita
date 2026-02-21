@@ -13,16 +13,16 @@ export default function LegalPage() {
   return (
     <div className="space-y-6">
       <div className="card p-4 md:p-5">
-        <h2 className="text-base font-semibold text-gray-900">Legal documents</h2>
+        <h2 className="text-base font-semibold text-foreground">Legal documents</h2>
         <ul className="mt-3 space-y-1.5">
           {documents.map((d) => (
             <li
               key={d.id}
-              className="flex items-center justify-between gap-3 rounded-crm bg-slate-50 px-3 py-2.5"
+              className="flex items-center justify-between gap-3 rounded-crm bg-muted px-3 py-2.5"
             >
               <div>
-                <p className="text-sm font-medium text-gray-900">{d.name}</p>
-                <p className="text-xs text-slate-500">Expires {d.expiry}</p>
+                <p className="text-sm font-medium text-foreground">{d.name}</p>
+                <p className="text-xs text-muted-foreground">Expires {d.expiry}</p>
               </div>
               <span
                 className={
@@ -39,12 +39,12 @@ export default function LegalPage() {
       </div>
 
       <div className="card p-4 md:p-5">
-        <h2 className="text-base font-semibold text-gray-900">Reminders</h2>
+        <h2 className="text-base font-semibold text-foreground">Reminders</h2>
         <ul className="mt-3 space-y-2">
           {reminders.map((r) => (
-            <li key={r.id} className="flex items-center justify-between rounded-crm bg-slate-50 px-3 py-2.5">
-              <span className="text-sm text-gray-900">{r.task}</span>
-              <span className="text-xs text-slate-500">{r.due}</span>
+            <li key={r.id} className="flex items-center justify-between rounded-crm bg-muted px-3 py-2.5">
+              <span className="text-sm text-foreground">{r.task}</span>
+              <span className="text-xs text-muted-foreground">{r.due}</span>
             </li>
           ))}
         </ul>

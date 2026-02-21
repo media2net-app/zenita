@@ -15,9 +15,9 @@ export default function SoulPage() {
       <div className="grid gap-4 sm:grid-cols-2">
         {practices.map((p) => (
           <div key={p.name} className="card p-4 md:p-5">
-            <p className="text-xs font-medium text-slate-500">{p.name}</p>
-            <p className="mt-1 text-2xl font-bold text-gray-900">
-              {p.streak} <span className="text-sm font-normal text-slate-500">{p.unit}</span>
+            <p className="text-xs font-medium text-muted-foreground">{p.name}</p>
+            <p className="mt-1 text-2xl font-bold text-foreground">
+              {p.streak} <span className="text-sm font-normal text-muted-foreground">{p.unit}</span>
             </p>
             <p className="mt-1 text-xs text-zenita-primary">Current streak</p>
           </div>
@@ -25,17 +25,17 @@ export default function SoulPage() {
       </div>
 
       <div className="card p-4 md:p-5">
-        <h2 className="text-base font-semibold text-gray-900">Recent reflections</h2>
+        <h2 className="text-base font-semibold text-foreground">Recent reflections</h2>
         <ul className="mt-3 space-y-2">
           {reflections.map((r) => (
-            <li key={r.id} className="rounded-crm border border-slate-100 bg-slate-50/50 p-3">
+            <li key={r.id} className="rounded-crm border border-border bg-muted p-3">
               <div className="flex items-center justify-between gap-2">
-                <span className="text-xs font-medium text-slate-500">{r.date}</span>
+                <span className="text-xs font-medium text-muted-foreground">{r.date}</span>
                 <span className="rounded-full bg-zenita-primary/10 px-2 py-0.5 text-xs font-medium text-zenita-primary">
                   {r.mood}
                 </span>
               </div>
-              <p className="mt-1.5 text-sm text-gray-700">{r.note}</p>
+              <p className="mt-1.5 text-sm text-foreground">{r.note}</p>
             </li>
           ))}
         </ul>

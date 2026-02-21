@@ -29,15 +29,15 @@ export default function SettingsPage() {
     <div className="space-y-6">
       {settingsSections.map((section) => (
         <div key={section.title} className="card p-4 md:p-5">
-          <h2 className="text-base font-semibold text-gray-900">{section.title}</h2>
+          <h2 className="text-base font-semibold text-foreground">{section.title}</h2>
           <ul className="mt-3 space-y-1.5">
             {section.items.map((item) => (
               <li
                 key={item.label}
-                className="flex items-center justify-between rounded-crm bg-slate-50 px-3 py-2.5"
+                className="flex items-center justify-between rounded-crm bg-muted px-3 py-2.5"
               >
-                <span className="text-sm text-slate-600">{item.label}</span>
-                <span className="text-sm font-medium text-gray-900">{item.value}</span>
+                <span className="text-sm text-muted-foreground">{item.label}</span>
+                <span className="text-sm font-medium text-foreground">{item.value}</span>
               </li>
             ))}
           </ul>

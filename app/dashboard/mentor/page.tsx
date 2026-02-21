@@ -16,10 +16,10 @@ export default function MentorPage() {
   return (
     <div className="space-y-6">
       <div className="card p-4 md:p-5">
-        <h2 className="text-base font-semibold text-gray-900">Next session</h2>
-        <div className="mt-3 rounded-crm bg-slate-50 p-4">
-          <p className="font-medium text-gray-900">{nextSession.topic}</p>
-          <p className="mt-1 text-sm text-slate-500">
+        <h2 className="text-base font-semibold text-foreground">Next session</h2>
+        <div className="mt-3 rounded-crm bg-muted p-4">
+          <p className="font-medium text-foreground">{nextSession.topic}</p>
+          <p className="mt-1 text-sm text-muted-foreground">
             {nextSession.date} · {nextSession.time}
           </p>
         </div>
@@ -27,15 +27,15 @@ export default function MentorPage() {
 
       <div className="grid gap-6 md:grid-cols-2">
         <div className="card p-4 md:p-5">
-          <h2 className="text-base font-semibold text-gray-900">Focus goals</h2>
+          <h2 className="text-base font-semibold text-foreground">Focus goals</h2>
           <ul className="mt-3 space-y-3">
             {goals.map((g) => (
-              <li key={g.id} className="rounded-crm bg-slate-50 p-3">
+              <li key={g.id} className="rounded-crm bg-muted p-3">
                 <div className="flex items-center justify-between gap-2">
-                  <span className="text-sm font-medium text-gray-900">{g.text}</span>
-                  <span className="text-xs text-slate-500">{g.progress}%</span>
+                  <span className="text-sm font-medium text-foreground">{g.text}</span>
+                  <span className="text-xs text-muted-foreground">{g.progress}%</span>
                 </div>
-                <div className="mt-2 h-1.5 w-full rounded-full bg-slate-200">
+                <div className="mt-2 h-1.5 w-full rounded-full bg-muted">
                   <div
                     className="h-1.5 rounded-full bg-zenita-primary"
                     style={{ width: `${g.progress}%` }}
@@ -47,13 +47,13 @@ export default function MentorPage() {
         </div>
 
         <div className="card p-4 md:p-5">
-          <h2 className="text-base font-semibold text-gray-900">Recent sessions</h2>
+          <h2 className="text-base font-semibold text-foreground">Recent sessions</h2>
           <ul className="mt-3 space-y-2">
             {sessions.map((s) => (
-              <li key={s.id} className="rounded-crm bg-slate-50 px-3 py-2.5">
-                <p className="text-sm font-medium text-gray-900">{s.topic}</p>
-                <p className="mt-0.5 text-xs text-slate-500">{s.date}</p>
-                <p className="mt-1 text-xs text-slate-600">{s.note}</p>
+              <li key={s.id} className="rounded-crm bg-muted px-3 py-2.5">
+                <p className="text-sm font-medium text-foreground">{s.topic}</p>
+                <p className="mt-0.5 text-xs text-muted-foreground">{s.date}</p>
+                <p className="mt-1 text-xs text-muted-foreground">{s.note}</p>
               </li>
             ))}
           </ul>
