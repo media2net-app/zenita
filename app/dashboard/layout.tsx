@@ -5,10 +5,41 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const navItems = [
-  { href: "/dashboard", label: "Dashboard", icon: "◉" },
-  { href: "/dashboard/health", label: "Health", icon: "♥" },
+  { href: "/dashboard", label: "Home", icon: "⌂" },
+  { href: "/dashboard/mentor", label: "Mentor", icon: "◇" },
   { href: "/dashboard/documents", label: "Documents", icon: "▤" },
+  { href: "/dashboard/agenda", label: "Agenda", icon: "▦" },
+  { href: "/dashboard/health", label: "Health", icon: "♥" },
+  { href: "/dashboard/financial", label: "Financial", icon: "¤" },
+  { href: "/dashboard/legal", label: "Legal", icon: "⚖" },
+  { href: "/dashboard/soul", label: "Soul", icon: "◎" },
+  { href: "/dashboard/marketplace", label: "Marketplace", icon: "☷" },
+  { href: "/dashboard/devices", label: "Devices", icon: "⌚" },
+  { href: "/dashboard/timeline", label: "Timeline", icon: "◷" },
+  { href: "/dashboard/settings", label: "Settings", icon: "⚙" },
 ];
+
+const bottomNavItems = [
+  navItems[0],
+  navItems[2],
+  navItems[4],
+  navItems[11],
+];
+
+const pathToTitle: Record<string, string> = {
+  "/dashboard": "Home",
+  "/dashboard/mentor": "Mentor",
+  "/dashboard/documents": "Documents",
+  "/dashboard/agenda": "Agenda",
+  "/dashboard/health": "Health",
+  "/dashboard/financial": "Financial",
+  "/dashboard/legal": "Legal",
+  "/dashboard/soul": "Soul",
+  "/dashboard/marketplace": "Marketplace",
+  "/dashboard/devices": "Devices",
+  "/dashboard/timeline": "Timeline",
+  "/dashboard/settings": "Settings",
+};
 
 function NavLink({
   href,
@@ -20,7 +51,9 @@ function NavLink({
   icon: string;
 }) {
   const pathname = usePathname();
-  const active = pathname === href;
+  const exactMatch = pathname === href;
+  const subMatch = href !== "/dashboard" && pathname.startsWith(href + "/");
+  const active = exactMatch || subMatch;
 
   return (
     <Link
@@ -39,16 +72,20 @@ function NavLink({
   );
 }
 
+function getPageTitle(pathname: string): string {
+  let p = pathname;
+  while (p) {
+    if (pathToTitle[p]) return pathToTitle[p];
+    const lastSlash = p.lastIndexOf("/");
+    if (lastSlash <= 0) break;
+    p = p.slice(0, lastSlash);
+  }
+  return "Zenita";
+}
+
 export default function DashboardLayout({ children }: { children: ReactNode }) {
   const pathname = usePathname();
-  const pageTitle =
-    pathname === "/dashboard"
-      ? "Dashboard"
-      : pathname.startsWith("/dashboard/health")
-        ? "Health"
-        : pathname.startsWith("/dashboard/documents")
-          ? "Documents"
-          : "MyManifest";
+  const pageTitle = getPageTitle(pathname);
 
   return (
     <div className="flex min-h-screen min-w-0">
@@ -59,11 +96,11 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
           className="flex h-14 md:h-16 items-center gap-2 border-b border-slate-700/50 px-4"
         >
           <div className="flex h-9 w-9 items-center justify-center rounded-crm bg-zenita-primary text-white font-bold text-sm">
-            M
+            Z
           </div>
-          <span className="text-lg font-semibold text-white">MyManifest</span>
+          <span className="text-lg font-semibold text-white">Zenita</span>
         </Link>
-        <nav className="flex-1 space-y-0.5 p-3">
+        <nav className="flex-1 space-y-0.5 overflow-y-auto p-3">
           {navItems.map((item) => (
             <NavLink
               key={item.href}
@@ -74,7 +111,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
           ))}
         </nav>
         <div className="border-t border-slate-700/50 p-3 space-y-2">
-          <p className="text-xs text-slate-500">MyManifest</p>
+          <p className="text-xs text-slate-500">Zenita.app</p>
           <Link
             href="/"
             className="flex items-center gap-2 rounded-crm px-3 py-2 text-sm font-medium text-slate-400 transition-colors hover:bg-crm-sidebar-hover hover:text-white"
@@ -119,8 +156,8 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
         className="fixed bottom-0 left-0 right-0 z-30 flex items-center justify-around border-t border-slate-200 bg-white py-2 pb-[env(safe-area-inset-bottom)] md:hidden"
         aria-label="Main navigation"
       >
-        {navItems.map((item) => {
-          const active = pathname === item.href;
+        {bottomNavItems.map((item) => {
+          const active = pathname === item.href || (item.href !== "/dashboard" && pathname.startsWith(item.href + "/"));
           return (
             <Link
               key={item.href}

@@ -1,4 +1,4 @@
-## MyManifest (project: zenita)
+## Zenita.app
 
 Personal life dashboard for insight into your life, with the first version
 focused on **health** and **documents**.

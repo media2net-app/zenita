@@ -3,8 +3,8 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-const DEMO_EMAIL = "demo@mymanifest.app";
-const DEMO_PASSWORD = "MyManifest-Demo-2026!";
+const DEMO_EMAIL = "demo@zenita.app";
+const DEMO_PASSWORD = "Zenita-Demo-2026!";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -27,9 +27,9 @@ export default function LoginPage() {
         <div className="rounded-2xl border border-slate-200/80 bg-white p-8 shadow-card-crm">
           <div className="mb-8 flex items-center justify-center gap-2">
             <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-zenita-primary text-white font-bold text-lg">
-              M
+              Z
             </div>
-            <span className="text-2xl font-semibold text-gray-900">MyManifest</span>
+            <span className="text-2xl font-semibold text-gray-900">Zenita</span>
           </div>
 
           <h1 className="text-center text-xl font-semibold text-gray-900">
@@ -93,7 +93,7 @@ export default function LoginPage() {
         </div>
 
         <p className="mt-6 text-center text-sm text-slate-500">
-          MyManifest · Health & documents
+          Zenita.app · Health & documents
         </p>
       </div>
     </div>
