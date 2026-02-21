@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 import { Inter } from "next/font/google";
 
 export const metadata = {
-  title: "Zenita",
+  title: "MyManifest",
   description:
     "Personal life dashboard for insight into health, documents and more.",
 };

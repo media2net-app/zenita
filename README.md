@@ -1,4 +1,4 @@
-## Zenita
+## MyManifest (project: zenita)
 
 Personal life dashboard for insight into your life, with the first version
 focused on **health** and **documents**.
@@ -11,5 +11,4 @@ focused on **health** and **documents**.
 - **Auth**: **NextAuth.js** with email + password (Credentials) as the base.
 - **Files**: Object storage (S3-compatible, e.g. Supabase Storage) for documents.
 
-These choices follow from the Zenita architecture plan and form the basis
-for the health and documents modules.
+These choices form the basis for the health and documents modules.

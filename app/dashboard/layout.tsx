@@ -48,7 +48,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
         ? "Health"
         : pathname.startsWith("/dashboard/documents")
           ? "Documents"
-          : "Zenita";
+          : "MyManifest";
 
   return (
     <div className="flex min-h-screen min-w-0">
@@ -59,9 +59,9 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
           className="flex h-14 md:h-16 items-center gap-2 border-b border-slate-700/50 px-4"
         >
           <div className="flex h-9 w-9 items-center justify-center rounded-crm bg-zenita-primary text-white font-bold text-sm">
-            Z
+            M
           </div>
-          <span className="text-lg font-semibold text-white">Zenita</span>
+          <span className="text-lg font-semibold text-white">MyManifest</span>
         </Link>
         <nav className="flex-1 space-y-0.5 p-3">
           {navItems.map((item) => (
@@ -74,7 +74,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
           ))}
         </nav>
         <div className="border-t border-slate-700/50 p-3 space-y-2">
-          <p className="text-xs text-slate-500">Personal life dashboard</p>
+          <p className="text-xs text-slate-500">MyManifest</p>
           <Link
             href="/"
             className="flex items-center gap-2 rounded-crm px-3 py-2 text-sm font-medium text-slate-400 transition-colors hover:bg-crm-sidebar-hover hover:text-white"

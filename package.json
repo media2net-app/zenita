@@ -1,7 +1,7 @@
 {
   "name": "zenita",
   "version": "1.0.0",
-  "description": "Zenita – personal life dashboard for health and documents.",
+  "description": "MyManifest (zenita) – personal life dashboard for health and documents.",
   "main": "index.js",
   "scripts": {
     "dev": "next dev",
