@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const DEMO_EMAIL = "demo@zenita.app";
-const DEMO_PASSWORD = "demo1234";
+const DEMO_PASSWORD = "Zenita-Demo-2026!";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -22,7 +22,7 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-crm-content px-4 py-12">
+    <div className="flex min-h-screen items-center justify-center bg-crm-content px-4 py-8 pt-[max(2rem,env(safe-area-inset-top))] pb-[max(2rem,env(safe-area-inset-bottom))]">
       <div className="w-full max-w-[400px]">
         <div className="rounded-2xl border border-slate-200/80 bg-white p-8 shadow-card-crm">
           <div className="mb-8 flex items-center justify-center gap-2">

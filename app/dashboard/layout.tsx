@@ -44,18 +44,19 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
   const pageTitle =
     pathname === "/dashboard"
       ? "Dashboard"
-      : pathname === "/dashboard/health"
+      : pathname.startsWith("/dashboard/health")
         ? "Health"
-        : pathname === "/dashboard/documents"
+        : pathname.startsWith("/dashboard/documents")
           ? "Documents"
           : "Zenita";
 
   return (
-    <div className="flex min-h-screen">
-      <aside className="fixed left-0 top-0 z-30 flex h-full w-[260px] flex-col border-r border-slate-700/50 bg-crm-sidebar">
+    <div className="flex min-h-screen min-w-0">
+      {/* Sidebar: hidden on mobile, visible from md */}
+      <aside className="fixed left-0 top-0 z-30 hidden h-full w-[260px] flex-col border-r border-slate-700/50 bg-crm-sidebar md:flex">
         <Link
           href="/dashboard"
-          className="flex h-16 items-center gap-2 border-b border-slate-700/50 px-4"
+          className="flex h-14 md:h-16 items-center gap-2 border-b border-slate-700/50 px-4"
         >
           <div className="flex h-9 w-9 items-center justify-center rounded-crm bg-zenita-primary text-white font-bold text-sm">
             Z
@@ -72,30 +73,72 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
             />
           ))}
         </nav>
-        <div className="border-t border-slate-700/50 p-3">
+        <div className="border-t border-slate-700/50 p-3 space-y-2">
           <p className="text-xs text-slate-500">Personal life dashboard</p>
+          <Link
+            href="/"
+            className="flex items-center gap-2 rounded-crm px-3 py-2 text-sm font-medium text-slate-400 transition-colors hover:bg-crm-sidebar-hover hover:text-white"
+          >
+            <span aria-hidden>⎋</span>
+            Log out
+          </Link>
         </div>
       </aside>
 
-      <div className="ml-[260px] flex min-h-screen flex-1 flex-col">
-        <header className="sticky top-0 z-20 flex h-16 items-center justify-between border-b border-slate-200 bg-white px-6 shadow-sm">
-          <h1 className="text-xl font-semibold text-gray-900">{pageTitle}</h1>
-          <div className="flex items-center gap-4">
+      {/* Main: full width on mobile (with bottom nav padding), sidebar margin from md */}
+      <div className="flex min-h-screen min-w-0 flex-1 flex-col pb-20 md:ml-[260px] md:pb-0">
+        <header className="sticky top-0 z-20 flex h-14 md:h-16 items-center justify-between border-b border-slate-200 bg-white px-4 shadow-sm md:px-6">
+          <h1 className="truncate text-lg font-semibold text-gray-900 md:text-xl">
+            {pageTitle}
+          </h1>
+          <div className="flex shrink-0 items-center gap-2 md:gap-4">
             <div className="hidden sm:block">
               <input
                 type="search"
                 placeholder="Search..."
-                className="w-48 rounded-crm border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-gray-900 placeholder:text-slate-400 focus:border-zenita-primary focus:outline-none focus:ring-1 focus:ring-zenita-primary"
+                className="w-36 rounded-crm border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-gray-900 placeholder:text-slate-400 focus:border-zenita-primary focus:outline-none focus:ring-1 focus:ring-zenita-primary md:w-48"
               />
             </div>
+            <Link
+              href="/"
+              className="text-sm font-medium text-slate-600 hover:text-zenita-primary md:hidden"
+            >
+              Log out
+            </Link>
             <div className="flex h-9 w-9 items-center justify-center rounded-full bg-zenita-primary/20 text-sm font-semibold text-zenita-primary">
               U
             </div>
           </div>
         </header>
 
-        <main className="flex-1 p-6">{children}</main>
+        <main className="min-w-0 flex-1 p-4 md:p-6">{children}</main>
       </div>
+
+      {/* Bottom nav: mobile only */}
+      <nav
+        className="fixed bottom-0 left-0 right-0 z-30 flex items-center justify-around border-t border-slate-200 bg-white py-2 pb-[env(safe-area-inset-bottom)] md:hidden"
+        aria-label="Main navigation"
+      >
+        {navItems.map((item) => {
+          const active = pathname === item.href;
+          return (
+            <Link
+              key={item.href}
+              href={item.href}
+              className={`flex min-w-0 flex-1 flex-col items-center justify-center gap-0.5 rounded-lg px-2 py-3 text-xs font-medium transition-colors active:opacity-80 ${
+                active
+                  ? "text-zenita-primary"
+                  : "text-slate-500 hover:bg-slate-50 hover:text-gray-900"
+              }`}
+            >
+              <span className="text-lg leading-none" aria-hidden>
+                {item.icon}
+              </span>
+              <span className="truncate">{item.label}</span>
+            </Link>
+          );
+        })}
+      </nav>
     </div>
   );
 }

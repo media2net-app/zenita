@@ -46,8 +46,8 @@ export default function HealthOverviewPage() {
   return (
     <div className="space-y-6">
       <div className="card p-4">
-        <div className="flex items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
+        <div className="flex min-w-0 flex-wrap items-center justify-between gap-3 gap-y-2 sm:gap-4">
+          <div className="flex min-w-0 items-center gap-3">
             <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gray-900 text-white text-lg" aria-hidden>
               ⌚
             </div>
@@ -61,7 +61,7 @@ export default function HealthOverviewPage() {
       </div>
 
       <section className="grid gap-4 md:grid-cols-3">
-        <div className="card p-5">
+        <div className="card min-w-0 p-4 md:p-5">
           <h2 className="text-xs font-semibold uppercase tracking-wide text-slate-500">
             Latest measurement
           </h2>
@@ -105,8 +105,8 @@ export default function HealthOverviewPage() {
           </dl>
         </div>
 
-        <div className="card p-5">
-          <h2 className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-slate-500">
+        <div className="card min-w-0 p-4 md:p-5">
+          <h2 className="flex flex-wrap items-center gap-2 text-xs font-semibold uppercase tracking-wide text-slate-500">
             Weekly steps trend
             <AppleWatchBadge />
           </h2>
@@ -135,7 +135,7 @@ export default function HealthOverviewPage() {
           </p>
         </div>
 
-        <div className="card p-5">
+        <div className="card min-w-0 p-4 md:p-5">
           <h2 className="text-xs font-semibold uppercase tracking-wide text-slate-500">
             Upcoming appointments
           </h2>

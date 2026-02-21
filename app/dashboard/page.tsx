@@ -1,4 +1,6 @@
+import Link from "next/link";
 import { AppleWatchBadge } from "@/components/AppleWatchBadge";
+import { dummyDocuments } from "@/lib/dummy-documents";
 
 const dummyHealth = {
   weightKg: 74.2,
@@ -9,12 +11,6 @@ const dummyHealth = {
 const dummyAppointments = [
   { id: 1, title: "Annual health check", date: "Today · 15:30" },
   { id: 2, title: "Physiotherapist", date: "Thu · 09:00" },
-];
-
-const dummyDocuments = [
-  { id: 1, name: "Health insurance policy 2026.pdf", tag: "Health" },
-  { id: 2, name: "Lab results – bloodwork.pdf", tag: "Health" },
-  { id: 3, name: "ID card scan.png", tag: "Personal" },
 ];
 
 const connectedWearable = {
@@ -60,7 +56,7 @@ export default function DashboardHomePage() {
     <div className="space-y-6">
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {stats.map((stat, i) => (
-          <div key={i} className="stat-card p-5">
+          <div key={i} className="stat-card p-4 md:p-5">
             <div className="flex items-center justify-between gap-2">
               <span className="text-xs font-medium uppercase tracking-wide text-slate-500">
                 {stat.label}
@@ -93,7 +89,7 @@ export default function DashboardHomePage() {
       </div>
 
       <div className="grid gap-6 lg:grid-cols-3">
-        <section className="card lg:col-span-2 p-5">
+        <section className="card lg:col-span-2 p-4 md:p-5">
           <h2 className="text-base font-semibold text-gray-900">
             Today&apos;s overview
           </h2>
@@ -101,7 +97,7 @@ export default function DashboardHomePage() {
             Key health metrics, upcoming appointments and recent documents.
           </p>
 
-          <div className="mt-5 grid gap-4 sm:grid-cols-3">
+          <div className="mt-4 md:mt-5 grid gap-3 grid-cols-1 sm:grid-cols-3">
             <div className="card-secondary p-4">
               <div className="text-xs font-medium text-slate-500">Weight</div>
               <div className="mt-1 text-lg font-semibold text-gray-900">
@@ -158,15 +154,17 @@ export default function DashboardHomePage() {
                 Recent documents
               </h3>
               <ul className="mt-2 space-y-1.5 text-sm text-gray-700">
-                {dummyDocuments.map((doc) => (
-                  <li
-                    key={doc.id}
-                    className="flex items-center justify-between rounded-crm bg-slate-50 px-3 py-2.5"
-                  >
-                    <span className="truncate pr-3">{doc.name}</span>
-                    <span className="rounded-full bg-zenita-primary/10 px-2 py-0.5 text-xs font-medium text-zenita-primary">
-                      {doc.tag}
-                    </span>
+                {dummyDocuments.slice(0, 3).map((doc) => (
+                  <li key={doc.id}>
+                    <Link
+                      href={`/dashboard/documents/${doc.id}`}
+                      className="flex items-center justify-between rounded-crm bg-slate-50 px-3 py-2.5 transition-colors hover:bg-slate-100 active:bg-slate-100"
+                    >
+                      <span className="truncate pr-3">{doc.name}</span>
+                      <span className="rounded-full bg-zenita-primary/10 px-2 py-0.5 text-xs font-medium text-zenita-primary shrink-0">
+                        {doc.category}
+                      </span>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -174,8 +172,8 @@ export default function DashboardHomePage() {
           </div>
         </section>
 
-        <section className="space-y-5">
-          <div className="card p-5">
+        <section className="space-y-4 md:space-y-5">
+          <div className="card p-4 md:p-5">
             <h2 className="text-base font-semibold text-gray-900">
               Connected devices
             </h2>
@@ -195,18 +193,28 @@ export default function DashboardHomePage() {
               Heart rate and activity sync from Apple Watch.
             </p>
           </div>
-          <div className="card p-5">
+          <div className="card p-4 md:p-5">
             <h2 className="text-base font-semibold text-gray-900">
               Quick actions
             </h2>
-            <ul className="mt-3 space-y-1 text-sm text-gray-700">
-              <li className="cursor-pointer rounded-crm px-3 py-2.5 hover:bg-slate-50">
+<ul className="mt-3 space-y-1 text-sm text-gray-700">
+            <li>
+              <Link
+                href="/dashboard/health/add"
+                className="block rounded-crm px-3 py-2.5 hover:bg-slate-50 active:bg-slate-100"
+              >
                 Add health measurement
-              </li>
-              <li className="cursor-pointer rounded-crm px-3 py-2.5 hover:bg-slate-50">
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/dashboard/documents/upload"
+                className="block rounded-crm px-3 py-2.5 hover:bg-slate-50 active:bg-slate-100"
+              >
                 Upload document
-              </li>
-            </ul>
+              </Link>
+            </li>
+          </ul>
           </div>
         </section>
       </div>
