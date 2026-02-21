@@ -22,7 +22,6 @@ import {
   LogOut,
   Moon,
 } from "lucide-react";
-import { AIChatWidget } from "@/components/AIChatWidget";
 import { useTheme } from "@/components/ThemeProvider";
 import { Dock, DockIcon, DockItem, DockLabel } from "@/components/ui/dock";
 
@@ -255,8 +254,6 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
           </Link>
         </Dock>
       </div>
-
-      <AIChatWidget />
     </div>
   );
 }
