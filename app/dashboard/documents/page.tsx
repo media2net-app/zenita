@@ -20,26 +20,10 @@ const recentDocs = [
 ];
 
 const folders = [
-  {
-    id: 1,
-    name: "Health",
-    count: 12,
-  },
-  {
-    id: 2,
-    name: "Finance",
-    count: 24,
-  },
-  {
-    id: 3,
-    name: "Work",
-    count: 18,
-  },
-  {
-    id: 4,
-    name: "Personal",
-    count: 9,
-  },
+  { id: 1, name: "Health", count: 12 },
+  { id: 2, name: "Finance", count: 24 },
+  { id: 3, name: "Work", count: 18 },
+  { id: 4, name: "Personal", count: 9 },
 ];
 
 export default function DocumentsOverviewPage() {
@@ -94,4 +78,3 @@ export default function DocumentsOverviewPage() {
     </div>
   );
 }
-

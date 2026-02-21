@@ -5,9 +5,9 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const navItems = [
-  { href: "/", label: "Dashboard", icon: "◉" },
-  { href: "/health", label: "Health", icon: "♥" },
-  { href: "/documents", label: "Documents", icon: "▤" },
+  { href: "/dashboard", label: "Dashboard", icon: "◉" },
+  { href: "/dashboard/health", label: "Health", icon: "♥" },
+  { href: "/dashboard/documents", label: "Documents", icon: "▤" },
 ];
 
 function NavLink({
@@ -42,23 +42,26 @@ function NavLink({
 export default function DashboardLayout({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const pageTitle =
-    pathname === "/"
+    pathname === "/dashboard"
       ? "Dashboard"
-      : pathname === "/health"
+      : pathname === "/dashboard/health"
         ? "Health"
-        : pathname === "/documents"
+        : pathname === "/dashboard/documents"
           ? "Documents"
           : "Zenita";
 
   return (
     <div className="flex min-h-screen">
       <aside className="fixed left-0 top-0 z-30 flex h-full w-[260px] flex-col border-r border-slate-700/50 bg-crm-sidebar">
-        <div className="flex h-16 items-center gap-2 border-b border-slate-700/50 px-4">
+        <Link
+          href="/dashboard"
+          className="flex h-16 items-center gap-2 border-b border-slate-700/50 px-4"
+        >
           <div className="flex h-9 w-9 items-center justify-center rounded-crm bg-zenita-primary text-white font-bold text-sm">
             Z
           </div>
           <span className="text-lg font-semibold text-white">Zenita</span>
-        </div>
+        </Link>
         <nav className="flex-1 space-y-0.5 p-3">
           {navItems.map((item) => (
             <NavLink
@@ -85,7 +88,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
                 className="w-48 rounded-crm border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-gray-900 placeholder:text-slate-400 focus:border-zenita-primary focus:outline-none focus:ring-1 focus:ring-zenita-primary"
               />
             </div>
-            <div className="h-9 w-9 rounded-full bg-zenita-primary/20 flex items-center justify-center text-zenita-primary font-semibold text-sm">
+            <div className="flex h-9 w-9 items-center justify-center rounded-full bg-zenita-primary/20 text-sm font-semibold text-zenita-primary">
               U
             </div>
           </div>

@@ -1,3 +1,5 @@
+import { AppleWatchBadge } from "@/components/AppleWatchBadge";
+
 const dummyHealth = {
   weightKg: 74.2,
   restingHeartRate: 63,
@@ -15,30 +17,41 @@ const dummyDocuments = [
   { id: 3, name: "ID card scan.png", tag: "Personal" },
 ];
 
+const connectedWearable = {
+  name: "Apple Watch",
+  model: "Series 9",
+  connected: true,
+  lastSync: "Just now",
+};
+
 const stats = [
   {
     label: "Weight",
     value: `${dummyHealth.weightKg} kg`,
     sub: "−0.4 kg vs last week",
     accent: "teal",
+    source: null as string | null,
   },
   {
     label: "Heart rate",
     value: `${dummyHealth.restingHeartRate} bpm`,
     sub: "Stable",
     accent: "teal",
+    source: "apple_watch",
   },
   {
     label: "Sleep",
     value: `${dummyHealth.sleepHours}h`,
     sub: "Below 8h goal",
     accent: "amber",
+    source: null as string | null,
   },
   {
     label: "Documents",
     value: "12",
     sub: "This month",
     accent: "indigo",
+    source: null as string | null,
   },
 ];
 
@@ -48,10 +61,13 @@ export default function DashboardHomePage() {
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {stats.map((stat, i) => (
           <div key={i} className="stat-card p-5">
-            <div className="mb-1 text-xs font-medium uppercase tracking-wide text-slate-500">
-              {stat.label}
+            <div className="flex items-center justify-between gap-2">
+              <span className="text-xs font-medium uppercase tracking-wide text-slate-500">
+                {stat.label}
+              </span>
+              {stat.source === "apple_watch" && <AppleWatchBadge />}
             </div>
-            <div className="text-2xl font-bold text-gray-900">{stat.value}</div>
+            <div className="mt-1 text-2xl font-bold text-gray-900">{stat.value}</div>
             <div
               className={`mt-1 text-xs ${
                 stat.accent === "teal"
@@ -96,14 +112,17 @@ export default function DashboardHomePage() {
               </div>
             </div>
             <div className="card-secondary p-4">
-              <div className="text-xs font-medium text-slate-500">
-                Resting heart rate
+              <div className="flex items-center justify-between gap-2">
+                <span className="text-xs font-medium text-slate-500">
+                  Resting heart rate
+                </span>
+                <AppleWatchBadge />
               </div>
               <div className="mt-1 text-lg font-semibold text-gray-900">
                 {dummyHealth.restingHeartRate} bpm
               </div>
               <div className="mt-1 text-xs text-zenita-primary">
-                Stable this week
+                Stable this week · from wearable
               </div>
             </div>
             <div className="card-secondary p-4">
@@ -155,18 +174,40 @@ export default function DashboardHomePage() {
           </div>
         </section>
 
-        <section className="card p-5">
-          <h2 className="text-base font-semibold text-gray-900">
-            Quick actions
-          </h2>
-          <ul className="mt-3 space-y-1 text-sm text-gray-700">
-            <li className="cursor-pointer rounded-crm px-3 py-2.5 hover:bg-slate-50">
-              Add health measurement
-            </li>
-            <li className="cursor-pointer rounded-crm px-3 py-2.5 hover:bg-slate-50">
-              Upload document
-            </li>
-          </ul>
+        <section className="space-y-5">
+          <div className="card p-5">
+            <h2 className="text-base font-semibold text-gray-900">
+              Connected devices
+            </h2>
+            <div className="mt-3 flex items-center gap-3 rounded-crm bg-slate-50 px-3 py-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gray-900 text-white text-lg" aria-hidden>
+                ⌚
+              </div>
+              <div className="min-w-0 flex-1">
+                <p className="font-medium text-gray-900">{connectedWearable.name}</p>
+                <p className="text-xs text-slate-500">{connectedWearable.model} · {connectedWearable.lastSync}</p>
+              </div>
+              <span className="rounded-full bg-zenita-primary/10 px-2 py-0.5 text-xs font-medium text-zenita-primary">
+                Connected
+              </span>
+            </div>
+            <p className="mt-2 text-xs text-slate-500">
+              Heart rate and activity sync from Apple Watch.
+            </p>
+          </div>
+          <div className="card p-5">
+            <h2 className="text-base font-semibold text-gray-900">
+              Quick actions
+            </h2>
+            <ul className="mt-3 space-y-1 text-sm text-gray-700">
+              <li className="cursor-pointer rounded-crm px-3 py-2.5 hover:bg-slate-50">
+                Add health measurement
+              </li>
+              <li className="cursor-pointer rounded-crm px-3 py-2.5 hover:bg-slate-50">
+                Upload document
+              </li>
+            </ul>
+          </div>
         </section>
       </div>
     </div>

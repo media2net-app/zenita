@@ -1,3 +1,5 @@
+import { AppleWatchBadge } from "@/components/AppleWatchBadge";
+
 const latestMetrics = {
   weightKg: 74.2,
   systolic: 118,
@@ -5,6 +7,12 @@ const latestMetrics = {
   heartRate: 63,
   sleepHours: 7.4,
   steps: 8460,
+};
+
+const connectedWearable = {
+  name: "Apple Watch",
+  model: "Series 9",
+  lastSync: "Just now",
 };
 
 const weeklyTrend = [
@@ -37,6 +45,21 @@ export default function HealthOverviewPage() {
 
   return (
     <div className="space-y-6">
+      <div className="card p-4">
+        <div className="flex items-center justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gray-900 text-white text-lg" aria-hidden>
+              ⌚
+            </div>
+            <div>
+              <p className="font-medium text-gray-900">{connectedWearable.name} connected</p>
+              <p className="text-xs text-slate-500">{connectedWearable.model} · Synced {connectedWearable.lastSync.toLowerCase()}</p>
+            </div>
+          </div>
+          <AppleWatchBadge />
+        </div>
+      </div>
+
       <section className="grid gap-4 md:grid-cols-3">
         <div className="card p-5">
           <h2 className="text-xs font-semibold uppercase tracking-wide text-slate-500">
@@ -55,8 +78,11 @@ export default function HealthOverviewPage() {
                 {latestMetrics.systolic}/{latestMetrics.diastolic} mmHg
               </dd>
             </div>
-            <div className="flex items-center justify-between">
-              <dt className="text-gray-500">Resting heart rate</dt>
+            <div className="flex items-center justify-between gap-2">
+              <dt className="flex items-center gap-1.5 text-gray-500">
+                Resting heart rate
+                <AppleWatchBadge />
+              </dt>
               <dd className="font-medium text-gray-900">
                 {latestMetrics.heartRate} bpm
               </dd>
@@ -67,8 +93,11 @@ export default function HealthOverviewPage() {
                 {latestMetrics.sleepHours.toFixed(1)} h
               </dd>
             </div>
-            <div className="flex items-center justify-between">
-              <dt className="text-gray-500">Steps (today)</dt>
+            <div className="flex items-center justify-between gap-2">
+              <dt className="flex items-center gap-1.5 text-gray-500">
+                Steps (today)
+                <AppleWatchBadge />
+              </dt>
               <dd className="font-medium text-gray-900">
                 {latestMetrics.steps.toLocaleString()}
               </dd>
@@ -77,8 +106,9 @@ export default function HealthOverviewPage() {
         </div>
 
         <div className="card p-5">
-          <h2 className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+          <h2 className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-slate-500">
             Weekly steps trend
+            <AppleWatchBadge />
           </h2>
           <div className="mt-3 flex items-end gap-2">
             {weeklyTrend.map((day) => {
@@ -101,7 +131,7 @@ export default function HealthOverviewPage() {
             {weeklyTrend
               .find((d) => d.value === maxSteps)
               ?.value.toLocaleString()}{" "}
-            steps)
+            steps). Data from Apple Watch.
           </p>
         </div>
 
@@ -130,4 +160,3 @@ export default function HealthOverviewPage() {
     </div>
   );
 }
-
