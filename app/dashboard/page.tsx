@@ -20,6 +20,18 @@ const connectedWearable = {
   lastSync: "Just now",
 };
 
+/** Right-side global widgets (spec: Daily Score, Financial Health, Sleep, Alcohol, Hydration, Focus, Legal Alerts, Device Status) */
+const globalWidgets = {
+  dailyScore: 72,
+  weeklyFinancialHealth: "Good",
+  sleepQuality: "7.4h · OK",
+  alcoholIntake: "0 glasses today",
+  hydrationLevel: 68,
+  focusScore: 6,
+  legalAlerts: 1,
+  deviceStatus: "1 connected",
+};
+
 const stats = [
   {
     label: "Weight",
@@ -53,7 +65,9 @@ const stats = [
 
 export default function DashboardHomePage() {
   return (
-    <div className="space-y-6">
+    <div className="flex flex-col gap-6 lg:flex-row lg:gap-8">
+      {/* Main content */}
+      <div className="min-w-0 flex-1 space-y-6">
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {stats.map((stat, i) => (
           <div key={i} className="stat-card p-4 md:p-5">
@@ -218,6 +232,54 @@ export default function DashboardHomePage() {
           </div>
         </section>
       </div>
+      </div>
+
+      {/* Right-side panel: global widgets (desktop only) */}
+      <aside
+        className="hidden w-full shrink-0 flex-col gap-3 lg:flex lg:w-72 lg:gap-4"
+        aria-label="Global widgets"
+      >
+        <div className="card p-4">
+          <p className="text-xs font-medium uppercase tracking-wide text-slate-500">Daily Score</p>
+          <p className="mt-1 text-2xl font-bold text-zenita-primary">{globalWidgets.dailyScore}</p>
+        </div>
+        <div className="card p-4">
+          <p className="text-xs font-medium uppercase tracking-wide text-slate-500">Weekly Financial Health</p>
+          <p className="mt-1 font-semibold text-gray-900">{globalWidgets.weeklyFinancialHealth}</p>
+        </div>
+        <div className="card p-4">
+          <p className="text-xs font-medium uppercase tracking-wide text-slate-500">Sleep Quality</p>
+          <p className="mt-1 font-semibold text-gray-900">{globalWidgets.sleepQuality}</p>
+        </div>
+        <div className="card p-4">
+          <p className="text-xs font-medium uppercase tracking-wide text-slate-500">Alcohol Intake</p>
+          <p className="mt-1 font-semibold text-gray-900">{globalWidgets.alcoholIntake}</p>
+        </div>
+        <div className="card p-4">
+          <p className="text-xs font-medium uppercase tracking-wide text-slate-500">Hydration Level</p>
+          <div className="mt-2 flex items-center gap-2">
+            <div className="h-2 flex-1 overflow-hidden rounded-full bg-slate-200">
+              <div
+                className="h-full rounded-full bg-sky-500"
+                style={{ width: `${globalWidgets.hydrationLevel}%` }}
+              />
+            </div>
+            <span className="text-sm font-medium text-gray-700">{globalWidgets.hydrationLevel}%</span>
+          </div>
+        </div>
+        <div className="card p-4">
+          <p className="text-xs font-medium uppercase tracking-wide text-slate-500">Focus Score</p>
+          <p className="mt-1 font-semibold text-gray-900">{globalWidgets.focusScore}/10</p>
+        </div>
+        <div className="card p-4">
+          <p className="text-xs font-medium uppercase tracking-wide text-slate-500">Legal Alerts</p>
+          <p className="mt-1 font-semibold text-gray-900">{globalWidgets.legalAlerts} upcoming</p>
+        </div>
+        <div className="card p-4">
+          <p className="text-xs font-medium uppercase tracking-wide text-slate-500">Device Status</p>
+          <p className="mt-1 font-semibold text-gray-900">{globalWidgets.deviceStatus}</p>
+        </div>
+      </aside>
     </div>
   );
 }

@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 
 const navItems = [
   { href: "/dashboard", label: "Home", icon: "⌂" },
+  { href: "/dashboard/core", label: "Core", icon: "◆" },
   { href: "/dashboard/mentor", label: "Mentor", icon: "◇" },
   { href: "/dashboard/documents", label: "Documents", icon: "▤" },
   { href: "/dashboard/agenda", label: "Agenda", icon: "▦" },
@@ -28,6 +29,7 @@ const bottomNavItems = [
 
 const pathToTitle: Record<string, string> = {
   "/dashboard": "Home",
+  "/dashboard/core": "Core",
   "/dashboard/mentor": "Mentor",
   "/dashboard/documents": "Documents",
   "/dashboard/agenda": "Agenda",
